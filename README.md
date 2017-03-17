@@ -10,6 +10,27 @@ I was writing bots to automatically perform actions when a ticket was raised to 
 ### How Do I Install It
 For now, you need to clone this Git repo and copy it into your project, but soon you'll be able to run `pip install jirapy` to get it anywhere.
 
+### How Do I Use It
+Import the class(es) you require from the module:
+
+`from jirapy import JiraTicket`
+
+then create a JIRA object from data returned from the API:
+
+```
+ticketdata = demo_function_that_returns_ticket_json("https://sample.jira.com/api/2/issue/sample-1")
+jiraticket = JiraTicket(ticketdata)
+```
+
+and now you can read back values from the data:
+
+```
+print jiraticket.summary
+> Ticket Summary
+print jiraticket.reporter
+> E. Neko
+```
+
 ### Testing
 To run the tests, launch `tests/ticketTest.py` and it will run though the expected values, producing a report similar to the below:
 
