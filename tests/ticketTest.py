@@ -45,50 +45,50 @@ tools.sep()
 
 # Check Ticket Summary
 if ticket.summary == TSUM:
-    tools.info("Ticket Summary SUCCESS")
+    tools.info(tools.padstat("TEST Ticket Summary", "SUCCESS"))
     passes += 1
 else:
-    tools.error("Ticket Summary FAILED")
+    tools.error(tools.padstat("TEST Ticket Summary", "FAILED"))
     fails += 1
 
 # Check Ticket Description
 if ticket.description == TDESC:
-    tools.info("Ticket Description SUCCESS")
+    tools.info(tools.padstat("TEST Ticket Description", "SUCCESS"))
     passes += 1
 else:
-    tools.error("Ticket Description FAILED")
+    tools.error(tools.padstat("TEST Ticket Description", "FAILED"))
     fails += 1
 
 # Check Ticket Key
 if ticket.key == TKEY:
-    tools.info("Ticket Key SUCCESS")
+    tools.info(tools.padstat("TEST Ticket Key", "SUCCESS"))
     passes += 1
 else:
-    tools.error("Ticket Key FAILED")
+    tools.error(tools.padstat("TEST Ticket Key", "FAILED"))
     fails += 1
 
 # Check Ticket URL
 if ticket.url == TURL:
-    tools.info("Ticket URL SUCCESS")
+    tools.info(tools.padstat("TEST Ticket URL", "SUCCESS"))
     passes += 1
 else:
-    tools.error("Ticket URL FAILED")
+    tools.error(tools.padstat("TEST Ticket URL", "FAILED"))
     fails += 1
 
 # Check Ticket Reporter
 if ticket.reporter == TUSR:
-    tools.info("Ticket Reporter SUCCESS")
+    tools.info(tools.padstat("TEST Ticket Reporter", "SUCCESS"))
     passes += 1
 else:
-    tools.error("Ticket Reporter FAILED")
+    tools.error(tools.padstat("TEST Ticket Reporter", "FAILED"))
     fails += 1
 
 # Check Ticket Status
 if ticket.status == TSTAT:
-    tools.info("Ticket Status SUCCESS")
+    tools.info(tools.padstat("TEST Ticket Status", "SUCCESS"))
     passes += 1
 else:
-    tools.error("Ticket Status FAILED")
+    tools.error(tools.padstat("TEST Ticket Status", "Failed"))
     fails += 1
 
 # Results

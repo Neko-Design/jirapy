@@ -16,14 +16,14 @@ To run the tests, launch `tests/ticketTest.py` and it will run though the expect
 ```
 bash-3.2$ python ticketTest.py
  [INFO] Starting JIRAPy Tests
- [INFO] ------------------------------------------------------------
- [INFO] Ticket Summary SUCCESS
- [INFO] Ticket Description SUCCESS
- [INFO] Ticket Key SUCCESS
- [INFO] Ticket URL SUCCESS
- [INFO] Ticket Reporter SUCCESS
- [INFO] Ticket Status SUCCESS
- [INFO] ------------------------------------------------------------
+ [INFO] ---------------------------------------------
+ [INFO] TEST Ticket Summary                   SUCCESS
+ [INFO] TEST Ticket Description               SUCCESS
+ [INFO] TEST Ticket Key                       SUCCESS
+ [INFO] TEST Ticket URL                       SUCCESS
+ [INFO] TEST Ticket Reporter                  SUCCESS
+ [INFO] TEST Ticket Status                    SUCCESS
+ [INFO] ---------------------------------------------
  [INFO] Run Finished. All Tests Passed
  [INFO] 0 Tests Failed. 6 Passed.
 ```
