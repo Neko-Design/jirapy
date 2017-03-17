@@ -18,3 +18,10 @@ class JiraTicket:
     # Init Func
     def __init__(self, ticketjson):
         self.ticket = ticketjson
+        self.id = self.ticket['issue']['id']
+        self.key = self.ticket['issue']['key']
+        self.url = self.ticket['issue']['self']
+        self.description = self.ticket['issue']['fields']['description']
+        self.summary = self.ticket['issue']['fields']['summary']
+        self.reporter = self.ticket['issue']['fields']['reporter']['name']
+        self.status = self.ticket['issue']['fields']['status']['name']
