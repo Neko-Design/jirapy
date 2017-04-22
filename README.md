@@ -2,7 +2,9 @@
 Python Library for reading JIRA Data from JSON API
 
 ### What Does it Do
-When building apps that integrate with JIRA using its API, its often repetitive to parse and read out data from the objects you're sent. JIRAPy handles the parsing and storing of data so that you can access it with easy to use handlers like `jiraticket.summary` or `jiraticket.tags`, and includes helpful looping and sorting functions so that filtering through data is as simple as `for tag in jiraticket.tags`.
+When building apps that integrate with JIRA using its API, its often repetitive to parse and read out data from the objects you're sent. JIRAPy handles the parsing and storing of data so that you can access it with easy to use handlers like `jiraticket.summary` or `jiraticket.tags`, and since it uses native Python data formats and objects, filtering through data is as simple as `for tag in jiraticket.tags`.
+
+It also includes a few convenience functions to make basic operations in Python more friendly, including the `add_comment()` function which when provided with a valid User/Pass combination can post comments to the remote JIRA instance for that ticket.
 
 JIRAPy works with data you already have, either from the APIs or from a WebHook. If you want a complete integration with a running JIRA instance that can pull down data for you, I highly recommend the [PyContribs](https://github.com/pycontribs) Package '[Jira](https://github.com/pycontribs/jira)' which provides a fantastic, complete, drop in solution.
 
@@ -31,6 +33,8 @@ print jiraticket.summary
 > Ticket Summary
 print jiraticket.reporter
 > E. Neko
+jiraticket.add_comment("Updated System, Please Check", "username", "password")
+> 200
 ```
 
 ### Testing
@@ -38,6 +42,8 @@ To run the tests, launch `tests/ticketTest.py` and it will run though the expect
 
 ```
 bash-3.2$ python ticketTest.py
+WARNING:root:Ticket Has no Labels
+WARNING:root:Ticket Has no Components
  [INFO] Starting JIRAPy Tests
  [INFO] ---------------------------------------------
  [INFO] TEST Ticket Summary                   SUCCESS
@@ -46,7 +52,11 @@ bash-3.2$ python ticketTest.py
  [INFO] TEST Ticket URL                       SUCCESS
  [INFO] TEST Ticket Reporter                  SUCCESS
  [INFO] TEST Ticket Status                    SUCCESS
+ [INFO] TEST Ticket Labels                    SUCCESS
+ [INFO] TEST Ticket Labels (Empty)            SUCCESS
+ [INFO] TEST Ticket Components                SUCCESS
+ [INFO] TEST Ticket Components (Empty)        SUCCESS
  [INFO] ---------------------------------------------
- [INFO] Run Finished. All Tests Passed
- [INFO] 0 Tests Failed. 6 Passed.
+ [INFO] 0 Tests Failed. 10 Passed.
+ [INFO] TESTS PASSED. All Tests Passed
 ```

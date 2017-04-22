@@ -12,29 +12,38 @@ TSUM = "JIRAPy Hasn't Released Yet"
 TDESC = "It's just not happening fast enough"
 TSTAT = "Waiting for Support"
 TUSR = "neko"
+TLABELS = ["label-1", "label-2"]
+TCOMP = [{"name": "demo-component"}]
 
-# Sample Data Object
-ticketdata = {
-    "issue" : {
-        "id": TID,
-        "self": TURL,
-        "key": TKEY,
-        "fields": {
-            "summary" : TSUM,
-            "description" : TDESC,
-            "status" : {
-                "name" : TSTAT
-            },
-            "reporter" : {
-                "name" : TUSR
+def generate_data(noopts=False):
+    # Sample Data Object
+    ticketdata = {
+        "issue" : {
+            "id": TID,
+            "self": TURL,
+            "key": TKEY,
+            "fields": {
+                "summary" : TSUM,
+                "description" : TDESC,
+                "status" : {
+                    "name" : TSTAT
+                },
+                "reporter" : {
+                    "name" : TUSR
+                }
             }
-        }
-    },
-    "timestamp" : 1462941258113
-}
+        },
+        "timestamp" : 1462941258113
+    }
+    if not noopts:
+        ticketdata['issue']['fields']['labels'] = TLABELS
+        ticketdata['issue']['fields']['components'] = TCOMP
+    return ticketdata
 
-# Ticket Object
-ticket = JiraTicket(ticketdata)
+# Ticket Object Without Labels and Components
+ticket2 = JiraTicket(generate_data(True))
+# Ticket Object With Labels and Components
+ticket = JiraTicket(generate_data())
 
 # Tests
 fails = 0
@@ -91,11 +100,42 @@ else:
     tools.error(tools.padstat("TEST Ticket Status", "Failed"))
     fails += 1
 
+# Check Ticket Labels (With Values)
+if ticket.labels == TLABELS:
+    tools.info(tools.padstat("TEST Ticket Labels", "SUCCESS"))
+    passes += 1
+else:
+    tools.error(tools.padstat("TEST Ticket Labels", "Failed"))
+    fails += 1
+# Check Ticket Labels (Without Values)
+if ticket2.labels == None:
+    tools.info(tools.padstat("TEST Ticket Labels (Empty)", "SUCCESS"))
+    passes += 1
+else:
+    tools.error(tools.padstat("TEST Ticket Labels (Empty)", "Failed"))
+    fails += 1
+
+# Check Ticket Components (With Values)
+if ticket.components == TCOMP:
+    tools.info(tools.padstat("TEST Ticket Components", "SUCCESS"))
+    passes += 1
+else:
+    tools.error(tools.padstat("TEST Ticket Components", "Failed"))
+    fails += 1
+# Check Ticket Components (Without Values)
+if ticket2.components == None:
+    tools.info(tools.padstat("TEST Ticket Components (Empty)", "SUCCESS"))
+    passes += 1
+else:
+    tools.error(tools.padstat("TEST Ticket Components (Empty)", "Failed"))
+    fails += 1
+
 # Results
 tools.sep()
-if fails > 0:
-    tools.error("Run Finished. Tests have Failed")
-else:
-    tools.info("Run Finished. All Tests Passed")
-
 tools.info(str(fails) + " Tests Failed. " + str(passes) + " Passed.")
+if fails > 0:
+    tools.error("TESTS FAILED. " + str(fails) + " Tests Failed")
+    exit(1)
+else:
+    tools.info("TESTS PASSED. All Tests Passed")
+    exit(0)

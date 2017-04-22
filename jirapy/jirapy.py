@@ -5,6 +5,8 @@
 # Version 0.0.1
 
 import json
+import logging
+import requests
 
 if __name__ == "__main__":
     print "JIRAPy Helper Classes. Import for helpful functions"
@@ -16,8 +18,8 @@ class JiraTicket:
     """
 
     # Init Func
-    def __init__(self, ticketjson):
-        self.ticket = ticketjson
+    def __init__(self, ticketdata):
+        self.ticket = ticketdata
         self.id = self.ticket['issue']['id']
         self.key = self.ticket['issue']['key']
         self.url = self.ticket['issue']['self']
@@ -25,3 +27,41 @@ class JiraTicket:
         self.summary = self.ticket['issue']['fields']['summary']
         self.reporter = self.ticket['issue']['fields']['reporter']['name']
         self.status = self.ticket['issue']['fields']['status']['name']
+        self.fields = self.ticket['issue']['fields']
+        # Tickets don't always have labels
+        try:
+            self.labels = self.ticket['issue']['fields']['labels']
+        except KeyError:
+            logging.warn("Ticket Has no Labels")
+            self.labels = None
+        # Tickets don't always have components either
+        try:
+            self.components = self.ticket['issue']['fields']['components']
+        except KeyError:
+            logging.warn("Ticket Has no Components")
+            self.components = None
+
+    def add_comment(self, comment=None, username=None, password=None):
+        """
+        Add Comment
+        Posts a Comment on the remote JIRA ticket
+        If public comments are disabled this requires a
+        username and password to be supplied.BaseException
+        """
+        resource = "/comment"
+        headers = {'Content-type': 'application/json'}
+        message = {
+            "body": comment
+        }
+        proxies = {
+            "http": None,
+            "https": None
+        }
+        try:
+            logging.info("Posting Comment to " + self.key)
+            jira_comment = requests.post(self.url + resource, headers=headers,
+                                         json=message, verify=False, proxies=proxies,
+                                         auth=(username, password))
+            return str(jira_comment.status_code)
+        except:
+            logging.info("Error Commenting on JIRA Ticket: " + self.key)
