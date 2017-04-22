@@ -12,7 +12,9 @@ JIRAPy works with data you already have, either from the APIs or from a WebHook.
 I was writing bots to automatically perform actions when a ticket was raised to our board and found that I was recreating the same functions every time I created a new bot. This keeps all the helpers in an easy to import class.
 
 ### How Do I Install It
-For now, you need to clone this Git repo and copy it into your project, but soon you'll be able to run `pip install jirapy` to get it anywhere.
+Easy Method - Pip. Run `pip install jirapy` to download the latest version and its dependencies.
+
+Alternatively, you can clone this repo and copy the `jirapy` folder into your project.
 
 ### How Do I Use It
 Import the class(es) you require from the module:
