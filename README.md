@@ -22,7 +22,7 @@ Import the class(es) you require from the module:
 then create a JIRA object from data returned from the API:
 
 ```
-ticketdata = demo_function_that_returns_ticket_json("https://neko-design.jira.com/api/rest/2/issue/jirapy-1")
+ticketdata = get_ticket("https://neko-design.jira.com/api/rest/2/issue/jirapy-1")
 jiraticket = JiraTicket(ticketdata)
 ```
 
