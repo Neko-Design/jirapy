@@ -6,3 +6,4 @@ settings.json
 dist/*
 build/*
 *.egg-info
+27*/*
