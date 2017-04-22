@@ -4,7 +4,7 @@ Python Library for reading JIRA Data from JSON API
 ### What Does it Do
 When building apps that integrate with JIRA using its API, its often repetitive to parse and read out data from the objects you're sent. JIRAPy handles the parsing and storing of data so that you can access it with easy to use handlers like `jiraticket.summary` or `jiraticket.tags`, and since it uses native Python data formats and objects, filtering through data is as simple as `for tag in jiraticket.tags`.
 
-It also includes a few convenience functions to make basic operations in Python more friendly, including the `add_comment()` function which when provided with a valid User/Pass combination can post comments to the remote JIRA instance for that ticket.
+It also includes a few convenience functions to make basic operations in Python more friendly, including the `add_comment()` function which when provided with a valid User/Pass combination can post comments to the remote JIRA instance for that ticket. If you need to commont on a JIRA with Self-Signed SSL, see the section 'My JIRA Uses Self-Signed Certificates'
 
 JIRAPy works with data you already have, either from the APIs or from a WebHook. If you want a complete integration with a running JIRA instance that can pull down data for you, I highly recommend the [PyContribs](https://github.com/pycontribs) Package '[Jira](https://github.com/pycontribs/jira)' which provides a fantastic, complete, drop in solution.
 
@@ -35,6 +35,16 @@ print jiraticket.reporter
 > E. Neko
 jiraticket.add_comment("Updated System, Please Check", "username", "password")
 > 200
+```
+
+### My JIRA Uses Self-Signed Certificates
+I've included the option to turn off SSL Verification for the comments feature. When you create the JiraTicket object, set the optional `verifyssl` parameter to `False`:
+
+```
+ticketdata = get_ticket("https://neko-design.jira.com/api/rest/2/issue/jirapy-1")
+jiraticket = JiraTicket(ticketdata, False)
+# Or with a Named Parameter
+jiraticket = JiraTicket(ticketdata, verifyssl=False)
 ```
 
 ### Testing

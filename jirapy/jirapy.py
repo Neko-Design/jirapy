@@ -18,7 +18,7 @@ class JiraTicket:
     """
 
     # Init Func
-    def __init__(self, ticketdata):
+    def __init__(self, ticketdata, verifyssl=True):
         self.ticket = ticketdata
         self.id = self.ticket['issue']['id']
         self.key = self.ticket['issue']['key']
@@ -28,6 +28,7 @@ class JiraTicket:
         self.reporter = self.ticket['issue']['fields']['reporter']['name']
         self.status = self.ticket['issue']['fields']['status']['name']
         self.fields = self.ticket['issue']['fields']
+        
         # Tickets don't always have labels
         try:
             self.labels = self.ticket['issue']['fields']['labels']
@@ -40,6 +41,9 @@ class JiraTicket:
         except KeyError:
             logging.warn("Ticket Has no Components")
             self.components = None
+        
+        # SSL Configuration for Comments Function
+        self._verifyssl = verifyssl
 
     def add_comment(self, comment=None, username=None, password=None):
         """
@@ -60,7 +64,7 @@ class JiraTicket:
         try:
             logging.info("Posting Comment to " + self.key)
             jira_comment = requests.post(self.url + resource, headers=headers,
-                                         json=message, verify=False, proxies=proxies,
+                                         json=message, verify=self._verifyssl, proxies=proxies,
                                          auth=(username, password))
             return str(jira_comment.status_code)
         except:
