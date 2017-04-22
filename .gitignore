@@ -3,3 +3,6 @@
 settings.json
 .vscode
 .vscode/*
+dist/*
+build/*
+*.egg-info
