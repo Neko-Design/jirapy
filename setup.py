@@ -6,7 +6,7 @@ setup(
     install_requires=[
         'requests'
     ],
-    version='0.1.dev0',
+    version='0.1',
     description='JIRA Data Wrapper for Easy WebHook Handling',
     author='Ewen McCahon',
     author_email='ewen.m.mccahon@student.uts.edu.au',
