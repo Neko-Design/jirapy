@@ -4,7 +4,7 @@ Python Library for reading JIRA Data from JSON API
 ### What Does it Do
 When building apps that integrate with JIRA using its API, its often repetitive to parse and read out data from the objects you're sent. JIRAPy handles the parsing and storing of data so that you can access it with easy to use handlers like `jiraticket.summary` or `jiraticket.tags`, and since it uses native Python data formats and objects, filtering through data is as simple as `for tag in jiraticket.tags`.
 
-It also includes a few convenience functions to make basic operations in Python more friendly, including the `add_comment()` function which when provided with a valid User/Pass combination can post comments to the remote JIRA instance for that ticket. If you need to commont on a JIRA with Self-Signed SSL, see the section 'My JIRA Uses Self-Signed Certificates'
+It also includes a few convenience functions to make basic operations in Python more friendly, including the `add_comment()` function which when provided with a valid User/Pass combination can post comments to the remote JIRA instance for that ticket. If you need to comment on a JIRA with Self-Signed SSL, see the section 'My JIRA Uses Self-Signed Certificates'
 
 JIRAPy works with data you already have, either from the APIs or from a WebHook. If you want a complete integration with a running JIRA instance that can pull down data for you, I highly recommend the [PyContribs](https://github.com/pycontribs) Package '[Jira](https://github.com/pycontribs/jira)' which provides a fantastic, complete, drop in solution.
 
