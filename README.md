@@ -72,3 +72,22 @@ WARNING:root:Ticket Has no Components
  [INFO] 0 Tests Failed. 10 Passed.
  [INFO] TESTS PASSED. All Tests Passed
 ```
+
+## JIRA API Wrapper
+
+JiraPy now includes a remote API wrapper for fetching data from a running JIRA instance. To use it:
+
+`from jirapy import JiraApi`
+
+Then you can use the API helper object to perform actiona like running a JQL search:
+
+```
+RemoteJira = JiraApi("https://neko-design.jira.com", "Username", "Password")
+SearchResults = RemoteJira.search("assignee = currentuser() AND resolution = Unresolved")
+for result in SearchResults['issues']:
+    print result['key']
+...
+>>> Key-1
+>>> Key-2
+>>> Key-3
+```

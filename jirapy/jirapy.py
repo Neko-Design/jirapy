@@ -69,3 +69,37 @@ class JiraTicket:
             return str(jira_comment.status_code)
         except:
             logging.info("Error Commenting on JIRA Ticket: " + self.key)
+
+class JiraApi:
+    """
+    JIRAApi
+    JIRA API Wrapper
+    """
+
+    # Init Func
+    def __init__(self, url, username, password, verifyssl=True):
+        self.api = str(url)
+        self.username = username
+        self.password = password
+        self._verifyssl = verifyssl
+
+    def post_data(self, api, data):
+        headers = {'Content-type': 'application/json'}
+        proxies = {"http": None, "https": None}
+        api_response = requests.post(self.api + api, headers=headers,
+                                     json=data, verify=self._verifyssl, proxies=proxies,
+                                     auth=(self.username, self.password))
+        return api_response.json()
+
+    def search(self, jql, max_results = 10, start_at = 0):
+        postdata = {
+            "jql": jql,
+            "startAt": start_at,
+            "maxResults": max_results,
+            "fields": [
+                "id",
+                "key"
+            ]
+        }
+        response = self.post_data("/rest/api/2/search", postdata)
+        return response

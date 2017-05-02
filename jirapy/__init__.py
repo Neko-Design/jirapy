@@ -1,1 +1,1 @@
-from jirapy import JiraTicket
+from jirapy import *
