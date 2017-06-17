@@ -1,6 +1,8 @@
 # JIRAPy
 Python Library for reading JIRA Data from JSON API. [Nice Documentation is Now Available!](https://docs.ewenmccahon.me/jirapy/)
 
+[JIRAPy Documentation](https://docs.ewenmccahon.me/jirapy/) is available both in this readme file and on my personal website in an easy to read format. The hosted version is available at [https://docs.ewenmccahon.me/jirapy/](https://docs.ewenmccahon.me/jirapy/)
+
 ### What Does it Do
 When building apps that integrate with JIRA using its API, its often repetitive to parse and read out data from the objects you're sent. JIRAPy handles the parsing and storing of data so that you can access it with easy to use handlers like `jiraticket.summary` or `jiraticket.tags`, and since it uses native Python data formats and objects, filtering through data is as simple as `for tag in jiraticket.tags`.
 
