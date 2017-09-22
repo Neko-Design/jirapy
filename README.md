@@ -1,4 +1,6 @@
 # JIRAPy
+[![Build Status](https://travis-ci.org/Neko-Design/jirapy.svg?branch=master)](https://travis-ci.org/Neko-Design/jirapy)
+
 Python Library for reading JIRA Data from JSON API. [Nice Documentation is Now Available!](https://docs.ewenmccahon.me/jirapy/)
 
 [JIRAPy Documentation](https://docs.ewenmccahon.me/jirapy/) is available both in this readme file and on my personal website in an easy to read format. The hosted version is available at [https://docs.ewenmccahon.me/jirapy/](https://docs.ewenmccahon.me/jirapy/)
